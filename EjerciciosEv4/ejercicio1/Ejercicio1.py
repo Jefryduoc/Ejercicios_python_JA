@@ -1,4 +1,4 @@
-import funciones as fn
+import EjerciciosEv4.funciones as fn
 
 # codigo ppal
 
