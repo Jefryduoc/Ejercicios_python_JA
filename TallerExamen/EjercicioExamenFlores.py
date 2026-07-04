@@ -85,6 +85,15 @@ def buscar_codigo(codigo_buscado, diccionario_arreglos):
         
     return False
 
+def actualizar_precio(codigo, nuevo_precio, diccionario_arreglos, diccionario_bodega):
+
+    codigo = codigo.strip().upper()
+
+    if buscar_codigo(codigo, diccionario_arreglos):
+        diccionario_bodega[codigo][0] = nuevo_precio
+        
+    return False
+
 # Elimina el arreglo desde ambos diccionarios solo si existe, devuelve true si lo elimino y false si no lo elimino
 def eliminar_arreglo(codigo_buscado, diccionario_arreglos, diccionario_bodega):
 
@@ -140,6 +149,33 @@ while True:
 
         except ValueError:
             print("Debe ingresar valores enteros")
+
+    elif opcion_seleccionada == 3:
+        while True:
+
+            codigo = input("ingrese el codigo del arreglo:   ").strip()
+
+            while True:
+                try:
+                    nuevo_precio = int(input("ingrese el nuevo precio:  "))
+                    if nuevo_precio > 0:
+                        break
+                    else:
+                        print("el precio debe ser mayor que cero. ")
+                except ValueError:
+                    print("debe ingresar un valor entero. ")
+
+            actualizado = actualizar_precio(codigo, nuevo_precio, arreglos, bodega)
+
+            if actualizado:
+                print("precio actualizado ")
+            else:
+                print("el codigo no existe")
+
+            continuar = input("¿Desea actualizar otro precio (s/n)?: ").strip().lower()
+
+            if continuar == "n":
+                break
 
     elif opcion_seleccionada == 5:
         
